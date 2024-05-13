@@ -8,15 +8,20 @@ import fr.univnantes.basicplanner.Clock;
 import fr.univnantes.basicplanner.Meeting;
 
 /**
- * TODO
+ * An implementation of {@link BasicPlanner}.
  */
 public class BasicPlannerImpl implements BasicPlanner {
 
     private List<Meeting> meetings;
     private Clock clock;
 
+    /**
+     * Default constructor.
+     * 
+     */
     public BasicPlannerImpl() {
         this.meetings = new ArrayList<>();
+        this.clock = new SystemClock();
     }
 
     @Override
@@ -61,7 +66,7 @@ public class BasicPlannerImpl implements BasicPlanner {
         for (Meeting existingMeeting : this.meetings) {
             if (clock.getCurrentTime().isBefore(existingMeeting.getStartTime())
                     && clock.getCurrentTime().isAfter(
-                            existingMeeting.getStartTime().minus(existingMeeting.getReminder()))) {
+                            existingMeeting.getStartTime().minus(existingMeeting.getReminderDuration()))) {
                 result.add(existingMeeting);
             }
         }

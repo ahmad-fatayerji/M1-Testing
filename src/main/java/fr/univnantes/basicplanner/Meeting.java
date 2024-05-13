@@ -2,23 +2,54 @@ package fr.univnantes.basicplanner;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.time.temporal.TemporalAmount;
 
 /**
- * TODO
+ * A meeting stored in a {@link Planner}.
+ * 
  */
 public interface Meeting {
 
     /**
-     * Sets a reminder to the Meeting.
+     * The start time of the meeting.
+     * 
+     * @return the start time of the meeting.
+     */
+    public Instant getStartTime();
+
+    /**
+     * The end time of the meeting.
+     * 
+     * @return the end time of the meeting.
+     */
+    public Instant getEndTime();
+
+    /**
+     * How long before the meeting should a reminder be triggered.
+     * 
+     * For example, if a meeting is at 12:00 and the reminder duration is 15
+     * minutes, then the reminder should be triggered at 11:45.
+     * 
+     * @return the reminder duration.
+     */
+    public Duration getReminderDuration();
+
+    /**
+     * The meeting title.
+     * 
+     * @return the meeting title?
+     */
+    public String getTitle();
+
+    /**
+     * Sets a reminder to the meeting.
      * 
      * If null, removes the reminder from the Meeting.
      * 
      * @param reminder The reminder duration.
-     * @throws IllegalArgumentException if reminder is _not_ null *and* smaller than
-     *                                  5 minutes.
+     * @throws IllegalArgumentException if reminderDuration is _not_ null *and*
+     *                                  smaller than 5 minutes.
      */
-    public void setReminder(Duration reminder);
+    public void setReminder(Duration reminderDuration);
 
     /**
      * Move the meeting to a new start time.
@@ -29,32 +60,5 @@ public interface Meeting {
      * @throws IllegalArgumentException if newStartTime is null.
      */
     public void move(Instant newStartTime);
-
-
-    /**
-     * TODO
-     * @return
-     */
-    public Instant getStartTime();
-
-
-    /**
-     * TODO
-     * @return
-     */
-    public Instant getEndTime();
-
-
-    /**
-     * TODO
-     * @return
-     */
-    public Duration getReminder();
-
-    /**
-     * TODO
-     * @return
-     */
-    public String getTitle();
 
 }

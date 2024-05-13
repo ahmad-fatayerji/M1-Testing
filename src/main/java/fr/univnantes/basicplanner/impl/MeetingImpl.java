@@ -6,14 +6,14 @@ import java.time.Instant;
 import fr.univnantes.basicplanner.Meeting;
 
 /**
- * TODO
+ * An implementation of {@link Meeting}.
  */
 public class MeetingImpl implements Meeting {
 
     private Instant startTime;
     private Instant endTime;
     private String title;
-    private Duration reminder;
+    private Duration reminderDuration;
 
     /**
      * Create an MeetingImpl.
@@ -60,12 +60,12 @@ public class MeetingImpl implements Meeting {
     }
 
     @Override
-    public void setReminder(Duration reminder) {
-        if (reminder != null) {
-            if (reminder.compareTo(Duration.ofMinutes(5)) < 0) {
+    public void setReminder(Duration reminderDuration) {
+        if (reminderDuration != null) {
+            if (reminderDuration.compareTo(Duration.ofMinutes(5)) < 0) {
                 throw new IllegalArgumentException("Reminder duration cannot be smaller than 5 minutes.");
             }
-            this.reminder = reminder;
+            this.reminderDuration = reminderDuration;
         }
     }
 
@@ -80,8 +80,8 @@ public class MeetingImpl implements Meeting {
     }
 
     @Override
-    public Duration getReminder() {
-        return this.reminder;
+    public Duration getReminderDuration() {
+        return this.reminderDuration;
     }
 
     @Override

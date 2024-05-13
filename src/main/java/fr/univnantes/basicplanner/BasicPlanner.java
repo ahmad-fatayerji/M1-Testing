@@ -5,9 +5,7 @@ import java.util.List;
 import fr.univnantes.basicplanner.impl.PlannerException;
 
 /**
- * TODO
- * 
- * TODO actual time
+ * A BasicPlanner is a timetable containing a collection of {@link Meeting}s.
  */
 public interface BasicPlanner {
 
@@ -39,7 +37,7 @@ public interface BasicPlanner {
     public List<Meeting> getAllMeetings();
 
     /**
-     * Retrieve the meeting that is *currently* taking place, which means the actual
+     * Retrieve the meeting that is *currently* taking place, which means the current
      * time is between the meeting start and end times.
      * 
      * @return The meeting that is currently taking place, or null if no meeting is taking place.
@@ -49,7 +47,7 @@ public interface BasicPlanner {
     /**
      * Retrieve the list of all active reminders.
      * 
-     * A reminder is considered active if the actual time is before the meeting
+     * A reminder is considered active if the current time is before the meeting
      * start time, but no farther than the reminder duration.
      * 
      * @return The list of all active reminders. 
