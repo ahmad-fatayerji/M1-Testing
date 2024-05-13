@@ -52,13 +52,22 @@ public interface Meeting {
     public void setReminder(Duration reminderDuration);
 
     /**
-     * Move the meeting to a new start time.
-     * When moved, the duration of the meeting does not change,
-     * nor the other attributes of the meeting (title, etc.).
+     * Change the start time.
      * 
-     * @param newStartTime The new start time.
-     * @throws IllegalArgumentException if newStartTime is null.
+     * CAUTION: does not check that the new start time is valid.
+     * 
+     * @param newStartTime The new start time of the meeting.
      */
-    public void move(Instant newStartTime);
+    void changeStartTime(Instant newStartTime);
+
+    /**
+     * 
+     * Change the end time.
+     * 
+     * CAUTION: does not check that the new end time is valid.
+     * 
+     * @param newStartTime The new end time of the meeting.
+     */
+    void changeEndTime(Instant newEndTime);
 
 }

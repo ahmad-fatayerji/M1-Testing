@@ -51,13 +51,7 @@ public class MeetingImpl implements Meeting {
         this.title = title;
     }
 
-    @Override
-    public void move(Instant newStartTime) {
-        if (newStartTime == null) {
-            throw new IllegalArgumentException("Reminder duration cannot be smaller than 5 minutes.");
-        }
-
-    }
+  
 
     @Override
     public void setReminder(Duration reminderDuration) {
@@ -87,6 +81,18 @@ public class MeetingImpl implements Meeting {
     @Override
     public String getTitle() {
         return this.title;
+    }
+
+
+
+    @Override
+    public void changeStartTime(Instant newStartTime) {
+        this.startTime = newStartTime;
+    }
+
+    @Override
+    public void changeEndTime(Instant newEndTime) {
+        this.endTime = newEndTime;
     }
 
 }

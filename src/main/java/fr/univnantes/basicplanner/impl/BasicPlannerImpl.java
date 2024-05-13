@@ -1,11 +1,14 @@
 package fr.univnantes.basicplanner.impl;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.univnantes.basicplanner.BasicPlanner;
 import fr.univnantes.basicplanner.Clock;
 import fr.univnantes.basicplanner.Meeting;
+import fr.univnantes.basicplanner.PlannerException;
 
 /**
  * An implementation of {@link BasicPlanner}.
@@ -71,6 +74,38 @@ public class BasicPlannerImpl implements BasicPlanner {
             }
         }
         return result;
+    }
+
+    @Override
+    public void moveMeeting(Meeting meeting, Instant newStartTime) throws PlannerException {
+
+        if (meeting == null) {
+            throw new IllegalArgumentException("Meeting cannot be null.");
+        }
+
+        if (newStartTime == null) {
+            throw new IllegalArgumentException("New start time cannot be null.");
+        }
+
+        if (!this.meetings.contains(meeting)) {
+            throw new PlannerException();
+        }
+
+        Duration meetingDuration = Duration.between(meeting.getStartTime(), meeting.getEndTime());
+        Instant newEndTime = newStartTime.plus(meetingDuration);
+        for (Meeting existingMeeting : this.meetings) {
+            if (existingMeeting != meeting) {
+                if ((newStartTime.isAfter(existingMeeting.getStartTime()) &&
+                        newStartTime.isBefore(existingMeeting.getEndTime()))
+                        ||
+                        (newEndTime.isAfter(existingMeeting.getStartTime()) &&
+                                newEndTime.isBefore(existingMeeting.getEndTime()))) {
+                    throw new PlannerException();
+                }
+            }
+        }
+        meeting.changeStartTime(newStartTime);
+        meeting.changeEndTime(newEndTime);
     }
 
 }
