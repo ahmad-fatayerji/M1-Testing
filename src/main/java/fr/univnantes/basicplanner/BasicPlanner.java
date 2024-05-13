@@ -1,0 +1,59 @@
+package fr.univnantes.basicplanner;
+
+import java.util.List;
+
+import fr.univnantes.basicplanner.impl.PlannerException;
+
+/**
+ * TODO
+ * 
+ * TODO actual time
+ */
+public interface BasicPlanner {
+
+    /**
+     * Adds a meeting to the planner.
+     * 
+     * A meeting cannot overlap an existing meeting.
+     * 
+     * @param meeting The meeting to add.
+     * @throws IllegalArgumentException if meeting is null.
+     * @throws PlannerException         if the meeting overlaps an existing meeting.
+     */
+    public void addMeeting(Meeting meeting) throws PlannerException;
+
+    /**
+     * Remove a meeting from the planner.
+     * 
+     * If the meeting is not part of the planner, nothing happens.
+     * 
+     * @param meeting The meeting to remove.
+     */
+    public void removeMeeting(Meeting meeting);
+
+    /**
+     * Retrieve all meetings currently in the planner.
+     * 
+     * @return all meetings currently in the planner.
+     */
+    public List<Meeting> getAllMeetings();
+
+    /**
+     * Retrieve the meeting that is *currently* taking place, which means the actual
+     * time is between the meeting start and end times.
+     * 
+     * @return The meeting that is currently taking place, or null if no meeting is taking place.
+     */
+    public Meeting seeCurrentMeeting();
+
+    /**
+     * Retrieve the list of all active reminders.
+     * 
+     * A reminder is considered active if the actual time is before the meeting
+     * start time, but no farther than the reminder duration.
+     * 
+     * @return The list of all active reminders. 
+     */
+    public List<Meeting> seeActiveReminders();
+
+}
