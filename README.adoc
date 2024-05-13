@@ -1,0 +1,23 @@
+= Basic Planner
+
+_Basic Planner_ is a Java library to manage a timetable of containing multiple meetings.
+
+*Features*:
+
+- Two meetings can never overlap,
+- A meeting can be moved to another time.
+- A meeting can have a reminder triggered a certain duration before the meeting,
+
+== Example
+
+```java
+TODO
+```
+
+== Compilation
+
+To compile the library:
+
+```
+mvn package
+```
