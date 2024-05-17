@@ -25,6 +25,7 @@ public interface BasicPlanner {
      * If the meeting is not part of the planner, nothing happens.
      * 
      * @param meeting The meeting to remove.
+     * @throws IllegalArgumentException if meeting is null.
      */
     void removeMeeting(Meeting meeting);
 
@@ -36,9 +37,22 @@ public interface BasicPlanner {
     List<Meeting> getAllMeetings();
 
     /**
+     * Move a meeting to a new start time.
+     * When moved, the duration of the meeting does not change,
+     * nor the other attributes of the meeting (title, etc.).
+     * 
+     * @param newStartTime The new start time.
+     * @throws IllegalArgumentException if meeting or newStartTime is null.
+     * @throws PlannerException         if the meeting is not part of the planner,
+     *                                  or if the meeting overlaps another existing
+     *                                  meeting.
+     * 
+     */
+    void moveMeeting(Meeting meeting, Instant newStartTime) throws PlannerException;
+
+    /**
      * Retrieve the meeting that is *currently* taking place, which means the
-     * current
-     * time is between the meeting start and end times.
+     * current time is between the meeting start and end times.
      * 
      * @return The meeting that is currently taking place, or null if no meeting is
      *         taking place.
@@ -54,17 +68,5 @@ public interface BasicPlanner {
      * @return The list of all active reminders.
      */
     List<Meeting> seeActiveReminders();
-
-    /**
-     * Move a meeting to a new start time.
-     * When moved, the duration of the meeting does not change,
-     * nor the other attributes of the meeting (title, etc.).
-     * 
-     * @param newStartTime The new start time.
-     * @throws IllegalArgumentException if meeting or newStartTime is null.
-     * @throws PlannerException         if the meeting is not part of the planner, or if the meeting overlaps another existing meeting.
-     * 
-     */
-    void moveMeeting(Meeting meeting, Instant newStartTime) throws PlannerException;
 
 }

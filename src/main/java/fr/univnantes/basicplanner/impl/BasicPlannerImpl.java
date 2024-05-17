@@ -19,6 +19,7 @@ public class BasicPlannerImpl implements BasicPlanner {
     private Clock clock;
 
     /**
+     * Create an empty planner with no meetings.
      * Default constructor.
      */
     public BasicPlannerImpl() {
@@ -43,6 +44,9 @@ public class BasicPlannerImpl implements BasicPlanner {
 
     @Override
     public void removeMeeting(Meeting meeting) {
+        if (meeting == null) {
+            throw new IllegalArgumentException("Meeting cannot be null.");
+        }
         this.meetings.remove((meeting));
     }
 
