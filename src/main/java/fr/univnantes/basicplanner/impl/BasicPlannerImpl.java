@@ -29,11 +29,11 @@ public class BasicPlannerImpl implements BasicPlanner {
     @Override
     public void addMeeting(Meeting newMeeting) throws PlannerException {
         for (Meeting existingMeeting : this.meetings) {
-            if ((newMeeting.getStartTime().isAfter(existingMeeting.getStartTime()) &&
-                    newMeeting.getStartTime().isBefore(existingMeeting.getEndTime()))
+            if (newMeeting.getStartTime().isAfter(existingMeeting.getStartTime()) &&
+                    newMeeting.getStartTime().isBefore(existingMeeting.getEndTime())
                     ||
-                    (newMeeting.getEndTime().isAfter(existingMeeting.getStartTime()) &&
-                            newMeeting.getEndTime().isBefore(existingMeeting.getEndTime()))) {
+                    newMeeting.getEndTime().isAfter(existingMeeting.getStartTime()) &&
+                            newMeeting.getEndTime().isBefore(existingMeeting.getEndTime())) {
                 throw new PlannerException("The target start time conflicts with an existing meeting: \""
                         + existingMeeting.getTitle() + "\"");
             }
@@ -43,7 +43,7 @@ public class BasicPlannerImpl implements BasicPlanner {
 
     @Override
     public void removeMeeting(Meeting meeting) {
-        this.meetings.remove(meeting);
+        this.meetings.remove((meeting));
     }
 
     @Override
@@ -94,11 +94,11 @@ public class BasicPlannerImpl implements BasicPlanner {
         Instant newEndTime = newStartTime.plus(meetingDuration);
         for (Meeting existingMeeting : this.meetings) {
             if (existingMeeting != meeting) {
-                if ((newStartTime.isAfter(existingMeeting.getStartTime()) &&
-                        newStartTime.isBefore(existingMeeting.getEndTime()))
+                if (newStartTime.isAfter(existingMeeting.getStartTime()) &&
+                        newStartTime.isBefore(existingMeeting.getEndTime())
                         ||
-                        (newEndTime.isAfter(existingMeeting.getStartTime()) &&
-                                newEndTime.isBefore(existingMeeting.getEndTime()))) {
+                        newEndTime.isAfter(existingMeeting.getStartTime()) &&
+                                newEndTime.isBefore(existingMeeting.getEndTime())) {
                     throw new PlannerException("The target start time conflicts with an existing meeting: \""
                             + existingMeeting.getTitle() + "\"");
                 }
