@@ -11,5 +11,5 @@ public interface Clock {
      * Retrieve the current time.
      * @return The current time.
      */
-    public Instant getCurrentTime();
+    Instant getCurrentTime();
 }

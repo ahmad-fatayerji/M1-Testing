@@ -14,14 +14,14 @@ public interface Meeting {
      * 
      * @return the start time of the meeting.
      */
-    public Instant getStartTime();
+    Instant getStartTime();
 
     /**
      * The end time of the meeting.
      * 
      * @return the end time of the meeting.
      */
-    public Instant getEndTime();
+    Instant getEndTime();
 
     /**
      * How long before the meeting should a reminder be triggered.
@@ -31,14 +31,14 @@ public interface Meeting {
      * 
      * @return the reminder duration.
      */
-    public Duration getReminderDuration();
+    Duration getReminderDuration();
 
     /**
      * The meeting title.
      * 
      * @return the meeting title?
      */
-    public String getTitle();
+    String getTitle();
 
     /**
      * Sets a reminder to the meeting.

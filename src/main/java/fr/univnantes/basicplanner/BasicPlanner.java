@@ -17,7 +17,7 @@ public interface BasicPlanner {
      * @throws IllegalArgumentException if meeting is null.
      * @throws PlannerException         if the meeting overlaps an existing meeting.
      */
-    public void addMeeting(Meeting meeting) throws PlannerException;
+    void addMeeting(Meeting meeting) throws PlannerException;
 
     /**
      * Remove a meeting from the planner.
@@ -33,7 +33,7 @@ public interface BasicPlanner {
      * 
      * @return all meetings currently in the planner.
      */
-    public List<Meeting> getAllMeetings();
+    List<Meeting> getAllMeetings();
 
     /**
      * Retrieve the meeting that is *currently* taking place, which means the
@@ -43,7 +43,7 @@ public interface BasicPlanner {
      * @return The meeting that is currently taking place, or null if no meeting is
      *         taking place.
      */
-    public Meeting seeCurrentMeeting();
+    Meeting seeCurrentMeeting();
 
     /**
      * Retrieve the list of all active reminders.
@@ -53,7 +53,7 @@ public interface BasicPlanner {
      * 
      * @return The list of all active reminders.
      */
-    public List<Meeting> seeActiveReminders();
+    List<Meeting> seeActiveReminders();
 
     /**
      * Move a meeting to a new start time.
@@ -65,6 +65,6 @@ public interface BasicPlanner {
      * @throws PlannerException         if the meeting is not part of the planner, or if the meeting overlaps another existing meeting.
      * 
      */
-    public void moveMeeting(Meeting meeting, Instant newStartTime) throws PlannerException;
+    void moveMeeting(Meeting meeting, Instant newStartTime) throws PlannerException;
 
 }
