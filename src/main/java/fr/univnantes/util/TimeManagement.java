@@ -9,7 +9,8 @@ import java.time.format.DateTimeFormatter;
 public class TimeManagement {
 
     /**
-     * Creates an Instant based on a date+time string formatted in this fashion: "2021-03-11 11:00"
+     * Creates an Instant based on a date+time string formatted in this fashion: "yyyy-MM-dd HH:mm"
+     * where 'yyyy' is the year, 'MM' is the month, 'dd' is the day, 'HH' is the hour, and 'mm' are the minutes. 
      * Example of usage:
      *    Instant i = TimeManagement.createInstant("2021-03-11 11:00", ZoneId.systemDefault());
      * @param dateTimeString The well formatted String.
