@@ -26,7 +26,7 @@ public interface BasicPlanner {
      * 
      * @param meeting The meeting to remove.
      */
-    public void removeMeeting(Meeting meeting);
+    void removeMeeting(Meeting meeting);
 
     /**
      * Retrieve all meetings currently in the planner.
