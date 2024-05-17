@@ -36,14 +36,6 @@ Meeting teamMeeting = new MeetingImpl(teamMeetingStart, teamMeetingEnd,"Team mee
 planner.addMeeting(teamMeeting);
 ```
 
-=== Move a meeting
-
-```java
-// Move the meeting to the next day
-Instant teamMeetingNewStart = TimeManagement.createInstant("2024-08-10 09:30", timeZone);
-planner.moveMeeting(teamMeeting,teamMeetingNewStart);
-```
-
 === See current meeting
 
 ```java
@@ -61,6 +53,15 @@ teamMeeting.setReminder(Duration.ofMinutes(30));
 // teamMeeting will be part of the returned value
 List<Meeting> activeMeetings = planner.seeActiveReminders();
 ```
+
+=== Move a meeting
+
+```java
+// Move the meeting to the next day
+Instant teamMeetingNewStart = TimeManagement.createInstant("2024-08-10 09:30", timeZone);
+planner.moveMeeting(teamMeeting,teamMeetingNewStart);
+```
+
 
 == Compilation
 
