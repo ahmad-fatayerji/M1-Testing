@@ -26,8 +26,8 @@ BasicPlanner planner = new BasicPlannerImpl();
 ZoneId timeZone = ZoneId.systemDefault();
 
 // Prepare start and end of the meeting
-Instant teamMeetingStart = TimeManagement.createInstant("2024-07-10 19:00", timeZone);
-Instant teamMeetingEnd = TimeManagement.createInstant("2024-07-10 23:00", timeZone);
+Instant teamMeetingStart = TimeManagement.createInstant("2024-07-10 16:00", timeZone);
+Instant teamMeetingEnd = TimeManagement.createInstant("2024-07-10 17:00", timeZone);
 
 // Create the meeting
 Meeting teamMeeting = new MeetingImpl(teamMeetingStart, teamMeetingEnd,"Team meeting");
@@ -39,7 +39,7 @@ planner.addMeeting(teamMeeting);
 === See current meeting
 
 ```java
-// If the current system time is between '2024-07-10 19:30' (start of teamMeeting) and '2024-07-10 23:00' (end of teamMeeting), 
+// If the current system time is between '2024-07-10 16:00' (start of teamMeeting) and '2024-07-10 17:00' (end of teamMeeting), 
 // teamMeeting will be the returned value
 Meeting currentMeeting = planner.seeCurrentMeeting();
 ```
@@ -49,7 +49,7 @@ Meeting currentMeeting = planner.seeCurrentMeeting();
 // Set a reminder to be triggered 30 minutes before the meeting
 teamMeeting.setReminder(Duration.ofMinutes(30));
 
-// If the current system time is between '2024-07-10 18:30' (30 minutes before teamMeeting) and '2024-07-10 19:00' (start of teamMeeting), 
+// If the current system time is between '2024-07-10 15:30' (30 minutes before teamMeeting) and '2024-07-10 16:00' (start of teamMeeting), 
 // teamMeeting will be part of the returned value
 List<Meeting> activeMeetings = planner.seeActiveReminders();
 ```
@@ -57,8 +57,8 @@ List<Meeting> activeMeetings = planner.seeActiveReminders();
 === Move a meeting
 
 ```java
-// Move the meeting to the next day
-Instant teamMeetingNewStart = TimeManagement.createInstant("2024-08-10 09:30", timeZone);
+// Move the meeting to the next day morning
+Instant teamMeetingNewStart = TimeManagement.createInstant("2024-07-11 09:30", timeZone);
 planner.moveMeeting(teamMeeting,teamMeetingNewStart);
 ```
 
