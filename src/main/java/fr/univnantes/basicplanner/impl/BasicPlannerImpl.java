@@ -20,7 +20,6 @@ public class BasicPlannerImpl implements BasicPlanner {
 
     /**
      * Default constructor.
-     * 
      */
     public BasicPlannerImpl() {
         this.meetings = new ArrayList<>();
@@ -35,7 +34,8 @@ public class BasicPlannerImpl implements BasicPlanner {
                     ||
                     (newMeeting.getEndTime().isAfter(existingMeeting.getStartTime()) &&
                             newMeeting.getEndTime().isBefore(existingMeeting.getEndTime()))) {
-                throw new PlannerException();
+                throw new PlannerException("The target start time conflicts with an existing meeting: \""
+                        + existingMeeting.getTitle() + "\"");
             }
         }
         this.meetings.add(newMeeting);
@@ -76,7 +76,6 @@ public class BasicPlannerImpl implements BasicPlanner {
         return result;
     }
 
-    @Override
     public void moveMeeting(Meeting meeting, Instant newStartTime) throws PlannerException {
 
         if (meeting == null) {
@@ -88,7 +87,7 @@ public class BasicPlannerImpl implements BasicPlanner {
         }
 
         if (!this.meetings.contains(meeting)) {
-            throw new PlannerException();
+            throw new PlannerException("Meeting must be part of the planner.");
         }
 
         Duration meetingDuration = Duration.between(meeting.getStartTime(), meeting.getEndTime());
@@ -100,7 +99,8 @@ public class BasicPlannerImpl implements BasicPlanner {
                         ||
                         (newEndTime.isAfter(existingMeeting.getStartTime()) &&
                                 newEndTime.isBefore(existingMeeting.getEndTime()))) {
-                    throw new PlannerException();
+                    throw new PlannerException("The target start time conflicts with an existing meeting: \""
+                            + existingMeeting.getTitle() + "\"");
                 }
             }
         }
