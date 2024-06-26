@@ -71,7 +71,8 @@ public class BasicPlannerImpl implements BasicPlanner {
 
         List<Meeting> result = new ArrayList<>();
         for (Meeting existingMeeting : this.meetings) {
-            if (clock.getCurrentTime().isBefore(existingMeeting.getStartTime())
+            if (existingMeeting.getReminderDuration() != null
+                    && clock.getCurrentTime().isBefore(existingMeeting.getStartTime())
                     && clock.getCurrentTime().isAfter(
                             existingMeeting.getStartTime().minus(existingMeeting.getReminderDuration()))) {
                 result.add(existingMeeting);
