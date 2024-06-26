@@ -45,7 +45,7 @@ public interface Meeting {
      * 
      * If null, removes the reminder from the Meeting.
      * 
-     * @param reminder The reminder duration.
+     * @param reminderDuration The reminder duration.
      * @throws IllegalArgumentException if reminderDuration is _not_ null *and*
      *                                  smaller than 5 minutes.
      */
