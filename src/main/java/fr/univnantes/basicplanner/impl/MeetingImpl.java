@@ -19,7 +19,7 @@ public class MeetingImpl implements Meeting {
      * Create an MeetingImpl.
      * 
      * @throws IllegalArgumentException If startTime is null, or if endTime is null,
-     *                                  or if startTime is before endTime, or
+     *                                  or if startTime is after endTime, or
      *                                  startTime equals endTime, or if title is
      *                                  null or empty.
      */
