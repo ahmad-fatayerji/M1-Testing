@@ -27,6 +27,15 @@ public class BasicPlannerImpl implements BasicPlanner {
         this.clock = new SystemClock();
     }
 
+    /**
+     * Create an empty planner with a mocked clock.
+     * @param clock
+     */
+    public BasicPlannerImpl(Clock clock) {
+        this.meetings = new ArrayList<>() ;
+        this.clock = clock ;
+    }
+
     @Override
     public void addMeeting(Meeting newMeeting) throws PlannerException {
         for (Meeting existingMeeting : this.meetings) {
